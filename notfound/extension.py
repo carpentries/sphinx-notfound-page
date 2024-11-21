@@ -103,7 +103,7 @@ def finalize_media(app, pagename, templatename, context, doctree):
         if not resource:
             otheruri = app.builder.get_target_uri(otheruri)
 
-        if otheruri and not otheruri.startswith('/'):
+        if baseuri != "" and otheruri and not otheruri.startswith('/'):
             otheruri = f'/{otheruri}'
 
         if otheruri:
