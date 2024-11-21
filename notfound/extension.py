@@ -75,7 +75,7 @@ def finalize_media(app, pagename, templatename, context, doctree):
     :type doctree: docutils.nodes.document
     """
 
-    default_baseuri = app.config.notfound_urls_prefix or '/'
+    default_baseuri = app.config.notfound_urls_prefix
 
     # https://github.com/sphinx-doc/sphinx/blob/v7.2.3/sphinx/builders/html/__init__.py#L1024-L1036
     def pathto(otheruri: str, resource: bool = False, baseuri: str = default_baseuri):
@@ -102,9 +102,6 @@ def finalize_media(app, pagename, templatename, context, doctree):
 
         if not resource:
             otheruri = app.builder.get_target_uri(otheruri)
-
-        if not baseuri.startswith('/'):
-            raise BaseURIError('"baseuri" must be absolute')
 
         if otheruri and not otheruri.startswith('/'):
             otheruri = f'/{otheruri}'
